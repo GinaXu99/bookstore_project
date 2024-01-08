@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-12">
+				<h2 class="section-headline">
+					<h2 class="section-headline">
+						<span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Book Lists'"></span>
+					</h2>
+				</h2>
+			</div>
+		</div>
+		<hr
+			style="position: absolute; width: 100%; height: 2px; background-color: #333; z-index: -1; margin-top: -80px;" />
+		<div class="row" style="margin-top: 10px;">
+			<div class="col-xs-12">
+				<div class="alert alert-info">
+					<h3>
+						Thank you for placing your order. The estimated delivery date is <span
+							th:text="${estimatedDeliveryDate}"></span>
+					</h3>
+				</div>
+
+				<h3>List of Items </h3>
+
+				<div class="row" th:each="cartItem : ${cartItemList}">
+					<hr />
+					<div class="col-xs-2">
+					</div>
+					<div class="col-xs-2">
+						<a th:href="@{/bookDetail/{id}(id=${cartItem.book.id})}">
+							<img class="img-responsive shelf-book" th:src=" 'http://localhost:8081/admin/images/book/'+
+								${cartItem.book.id}+'.png' " style="width: 70px;" />
+						</a>
+					</div>
+					<div class="col-xs-6">
+						<div style="margin-left: 50px;">
+							<a th:href="@{/bookDetail/{id}(id=${cartItem.book.id})}">
+								<h4 th:text="${cartItem.book.title}"></h4>
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<h5 style="color: #db3208; font-size: large;">
+							$<span th:text="${cartItem.book.ourPrice}"
+								th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div><!-- end of container -->
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+
+</html>

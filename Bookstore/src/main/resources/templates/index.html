@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+
+		<div th:if="${message !=null}" class="alert alert-secondary text-center">
+			<h2 th:text="${message}"></h2>
+		</div>
+
+		<div style="margin-top: 90px;">
+			<div class="home-headline">
+				<h3><strong>Featured Books</strong></h3>
+			</div>
+			<hr />
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-3">
+				<a class="product-item">
+					<figure class="product-style">
+						<img th:src="@{/images/b5.png}" width="80%" height="80%" alt="Books" class="product-item">
+						<a th:href="@{/bookDetail/1}"> <button type="button" style="margin-top: 10px;">View
+								Details</button> </a>
+					</figure>
+					<figcaption>
+						<h4>Simple way of piece life</h4>
+						<span>Armor Ramsey</span>
+						<div class="item-price">$ 40.00</div>
+					</figcaption>
+			</div>
+
+			<div class="col-md-3">
+				<div class="product-item">
+					<figure class="product-style">
+						<img th:src="@{/images/b2.png}" width="80%" height="80%" alt="Books" class="product-item">
+						<a th:href="@{/bookDetail/2}"><button type="button" style="margin-top: 10px;">View
+								Details</button></a>
+					</figure>
+					<figcaption>
+						<h4>Great travel at desert</h4>
+						<span>Sanchit Howdy</span>
+						<div class="item-price">$ 38.00</div>
+					</figcaption>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="product-item">
+					<figure class="product-style">
+						<img th:src="@{/images/b3.png}" width="80%" height="80%" alt="Books" class="product-item">
+						<a th:href="@{/bookDetail/3}"><button type="button" style="margin-top: 10px;">View
+								Details</button></a>
+					</figure>
+					<figcaption>
+						<h4>The lady beauty Scarlett</h4>
+						<span>Arthur Doyle</span>
+						<div class="item-price">$ 45.00</div>
+					</figcaption>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="product-item">
+					<figure class="product-style">
+						<img th:src="@{/images/b4.png}" width="80%" height="80%" alt="Books" class="product-item">
+						<a th:href="@{/bookDetail/4}"><button type="button" style="margin-top: 10px;">View
+								Details</button></a>
+					</figure>
+					<figcaption>
+						<h4>Once upon a time</h4>
+						<span>Klien Marry</span>
+						<div class="item-price">$ 35.00</div>
+					</figcaption>
+				</div>
+			</div>
+		</div><!--ft-books-slider-->
+
+
+		<div style="margin-top: 50px;">
+			<hr />
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<figure class="products-thumb">
+					<img th:src="@{/images/b5.png}" width="70%" height="60%" class="single-image">
+				</figure>
+			</div>
+
+			<div class="col-md-8">
+				<div class="product-entry">
+					<h3><strong>Best Selling Book</strong></h3>
+					<div class="products-content">
+						<div class="author-name">By Timbur Hood</div>
+						<h4 class="item-title">Birds gonna be happy</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet,
+							libero ipsum enim pharetra hac.</p>
+						<div class="item-price">$ 45.00</div>
+						<div class="btn-wrap">
+							<a th:href="@{/bookDetail/1}"><button type="button" style="margin-top: 10px;">View
+									Details</button></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- / row -->
+
+
+		<div style="margin-top: 50px;">
+			<hr />
+		</div>
+
+		<div class="row" style="text-align: center;">
+			<h4><strong>Contact Us</strong></h4>
+			<p> Email: webstore-aus@bookstore.com Tel: (02) 0262 7906</p>
+			<p> Operating Hours: 9:00am – 5:30pm (Monday to Friday, except Public Holidays)</p>
+		</div>
+
+	</div>
+	<!-- end of container -->
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+
+</html>

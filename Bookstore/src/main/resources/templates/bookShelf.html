@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" />
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="section-headline">
+					<h2 class="section-headline">
+						<span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Book Lists'"></span>
+					</h2>
+				</h2>
+			</div>
+		</div>
+		<hr
+			style="position: absolute; width: 100%; height: 2px; background-color: #333; z-index: -1; margin-top: -80px;" />
+
+		<div class="row" style="margin-top:60px;">
+			<div>
+				<div th:if="${emptyList}">
+					<h5>No result is found. Try something else or try again later.</h5>
+				</div>
+
+
+				<!--filter search section -->
+				<div class="p-2">
+					<form th:action="@{/bookShelf/page/1}">
+						<input type="hidden" name="sortDir" th:value="${sortDir}" />
+						<input type="text" name="keyword" th:value="${keyword}" required />
+						<input type="submit" value="Search" />
+						<a th:href="@{/bookShelf/page/1}"><input type="button" value="Clear" /></a>
+					</form>
+				</div>
+
+				<div class="border border-seconday">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<td>
+
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=id'}">ID</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=title'}">Title</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=author'}">Author</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=publisher'}">Publisher</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=publicationDate'}">Publication Date</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=language'}">Language</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=listPrice'}">List Price</a>
+								</td>
+								<td>
+									<a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=ourPrice'}">Our Price</a>
+								</td>
+								<td><a
+										th:href="@{'/bookShelf/page/' + ${currentPage} + '?sortDir=' + ${sortDir} + '&sortField=category'}">Category
+								</td>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="book: ${bookList}">
+								<td> <a th:href="@{/bookDetail/{id}(id=${book.id})}"><img
+											class="img-responsive shelf-book"
+											th:src="'http://localhost:8081/admin/images/book/'+${book.id}+'.png'"
+											width="120" height="150" /></a>
+								</td>
+								<td th:text="${book.id}"></td>
+								<td th:text="${book.title}"></td>
+								<td th:text="${book.author}"></td>
+								<td th:text="${book.publisher}"></td>
+								<td th:text="${book.publicationDate}"></td>
+								<td th:text="${book.language}"></td>
+								<td th:text="${book.listPrice}"></td>
+								<td th:text="${book.ourPrice}"></td>
+								<td th:text="${book.category}"></td>
+							</tr>
+
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+		<div>
+			Total Items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]&nbsp;
+			<a th:if="${currentPage} > 1"
+				th:href="@{'/bookShelf/page/1?sortDir=' + ${sortDir} + '&sortField=' + ${sortField}}">First</a>
+			<span th:unless="${currentPage > 1}">First</span>
+			&nbsp;
+			<a th:if="${currentPage} > 1"
+				th:href="@{'/bookShelf/page/' + ${currentPage-1}} + '?sortDir=' + ${sortDir} + '&sortField=' + ${sortField}">Previous</a>
+			<span th:unless="${currentPage} > 1">Previous</span>
+			&nbsp;
+			<a th:if="${currentPage < totalPages}"
+				th:href="@{'/bookShelf/page/' + ${currentPage+1}} + '?sortDir=' + ${sortDir} + '&sortField=' + ${sortField}">Next</a>
+			<span th:unless="${currentPage < totalPages}">Next</span>
+			&nbsp;
+
+			<a th:if="${currentPage < totalPages}"
+				th:href="@{'/bookShelf/page/' + ${totalPages}} + '?sortDir=' + ${sortDir} + '&sortField=' + ${sortField}">Last</a>
+			<span th:unless="${currentPage < totalPages}">Last</span>
+			&nbsp;
+		</div>
+
+	</div>
+
+
+
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+
+</html>

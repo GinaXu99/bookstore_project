@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="common-header">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Bookstore</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/non-responsive.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/fonts/all.css" />
+
+	<!-- Custom styles for this template -->
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+	<div th:fragment="navbar">
+		
+		<div class="page-top" style="width: 100%;  background-color: white;"></div>
+
+		<!-- Static navbar -->
+		<nav class="navbar navbar-default navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">Bookstore</a>
+				</div>
+
+				<div id="navbar">
+					<ul class="nav navbar-nav navbar-left">
+						<li><a th:href="@{/showFirstPage}">Browse BookList</a></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/shoppingCart/cart}">Shopping Cart</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">Register/Login</a></li>
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Profile</a>
+						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+			<!--/.container-fluid -->
+		</nav>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+		<!-- data table -->
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script th:src="@{/js/scripts.js}"></script>
+	</div>
+</body>
+
+</html>
